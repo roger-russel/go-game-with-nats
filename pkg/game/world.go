@@ -4,6 +4,9 @@ import (
 	"github.com/veandco/go-sdl2/sdl"
 )
 
+var ScreamMaxX int32 = 1200
+var ScreamMaxY int32 = 800
+
 //Play metod start the Game Loop
 func Play() {
 
@@ -14,7 +17,7 @@ func Play() {
 
 	window, err := sdl.CreateWindow("Go Game GoGO",
 		sdl.WINDOWPOS_UNDEFINED, sdl.WINDOWPOS_UNDEFINED,
-		1200, 800, sdl.WINDOW_SHOWN)
+		ScreamMaxX, ScreamMaxY, sdl.WINDOW_SHOWN)
 
 	if err != nil {
 		panic(err)
@@ -28,9 +31,11 @@ func Play() {
 
 	running := true
 	for running {
+
 		surface.FillRect(nil, 0)
 		DrawPlayers(surface)
 		window.UpdateSurface()
+
 		for event := sdl.PollEvent(); event != nil; event = sdl.PollEvent() {
 			switch t := event.(type) {
 			case *sdl.KeyboardEvent:
